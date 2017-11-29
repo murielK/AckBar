@@ -57,7 +57,7 @@ public class AckBarService {// not to be used in multithreading environment
             AckBarHolder ackBarHolder = getAckBarHolderFor(callback);
             if (ackBarHolder == null) {
                 ackBarHolder = new AckBarHolder(callback, duration);
-                ackBarHolders.push(ackBarHolder);
+                ackBarHolders.offerFirst(ackBarHolder);
             } else {
                 ackBarHolder.duration = duration;
             }
@@ -95,7 +95,7 @@ public class AckBarService {// not to be used in multithreading environment
 
     private void showNextAckBarWindow() {
         if (!ackBarHolders.isEmpty()) {
-            final AckBarHolder ackBarHolder = ackBarHolders.pop();
+            final AckBarHolder ackBarHolder = ackBarHolders.pollLast();
             final AckBarCallback callback;
             if ((callback = ackBarHolder.ackBarCallbackWeakReference.get()) != null) {
                 callback.onShow();

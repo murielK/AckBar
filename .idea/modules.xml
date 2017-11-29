@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AckBar.iml" filepath="$PROJECT_DIR$/AckBar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AckBar/AckBar.iml" filepath="$PROJECT_DIR$/AckBar/AckBar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProjectAckBar.iml" filepath="$PROJECT_DIR$/ProjectAckBar.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AckBar/lib.iml" filepath="$PROJECT_DIR$/AckBar/lib.iml" />
     </modules>
   </component>
 </project>
