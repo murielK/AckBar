@@ -7,10 +7,10 @@ ext {
     publishedGroupId = 'com.murielkamgang' // your module package name
     libraryName = 'AckBar'
     artifact = 'AckBar'// has to be same as your library module name
-    libraryDescription = 'AckBar is a very lightweight and customizable android library to display brief message to user.'
+    libraryDescription = 'AckBar is simple, lightweight and customizable Android library to display in-app notifications.'
     siteUrl = 'https://github.com/murielK/AckBar'
     gitUrl = 'https://github.com/murielK/AckBar.git'
-    libraryVersion = '1.0'
+    libraryVersion = '1.0.0'
     developerId = 'murielk'
     developerName = 'Muriel kamgang Mabou'
     developerEmail = 'murielkamgang@gmail.com'

@@ -1,5 +1,5 @@
 # AckBar
-AckBar is a very lightweight and customizable android library to display brief message to user.
+AckBar is simple, lightweight and customizable Android library to display in-app notifications.
 
 * Show a message on top of the screen for a fixed period of time or make it sticky
 * Queue message
@@ -43,9 +43,14 @@ get it via Gradle:
 compile 'com.murielkamgang:AckBar:1.0.0'
 ```
 # Screenshots
-![Logo](screenshots/s_2.png)
+![GIF](gif/g_1.gif)
 ![Logo](screenshots/s_1.png)
 ![Logo](screenshots/s_3.png)
 ![Logo](screenshots/s_4.png)
 
+#Copyright
+
+Licensed under the GNU General Public License v2.0
+
+* [GPLv2](LICENSE.md)
 
