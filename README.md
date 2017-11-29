@@ -38,7 +38,20 @@ set an action
  ```
 
 # Download
-get it via Gradle:
+
+add the repo on your root build.gradle file
+
+```groovy
+allprojects {
+    repositories {
+         maven {
+            url "https://dl.bintray.com/murielk/maven/"
+        }
+    }
+}
+```
+
+now add  the dependency on your project build.gradle file
 ```groovy
 compile 'com.murielkamgang:AckBar:1.0.0'
 ```
