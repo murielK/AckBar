@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textview_H2_size">17sp</dimen>
+    <dimen name="textview_H6_size">14sp</dimen>
+    <dimen name="base_layout_padding">16dp</dimen>
+    <dimen name="img_alertbar_padding">5dp</dimen>
+    <dimen name="layout_content_padding">5dp</dimen>
+    <dimen name="text_margin_start">5dp</dimen>
+    <dimen name="text_padding_top">5dp</dimen>
+    <dimen name="arrow_size">24dp</dimen>
+</resources>

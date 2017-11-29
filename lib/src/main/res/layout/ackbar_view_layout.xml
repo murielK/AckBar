@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:padding="@dimen/base_layout_padding">
+
+    <ImageView
+        android:id="@+id/image_alertbar_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/img_alertbar_padding"
+        android:src="@drawable/ic_close" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="@dimen/layout_content_padding">
+
+        <TextView
+            android:id="@+id/text_alertbar_title"
+            style="@style/textViewH2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/text_margin_start"
+            android:layout_marginStart="@dimen/text_margin_start"
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="Notification title" />
+
+        <TextView
+            android:id="@+id/text_alertbar_description"
+            style="@style/textViewH6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/text_margin_start"
+            android:layout_marginStart="@dimen/text_margin_start"
+            android:paddingTop="@dimen/text_padding_top"
+            android:visibility="gone"
+            tools:text="Notification description" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/image_arrow"
+        android:layout_width="@dimen/arrow_size"
+        android:layout_height="@dimen/arrow_size"
+        android:layout_gravity="center_vertical"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_arrow_next"
+        android:visibility="gone" />
+</LinearLayout>

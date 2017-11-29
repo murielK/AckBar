@@ -1,0 +1,19 @@
+<resources>
+
+    <style name="textViewH6">
+        <item name="android:textSize">@dimen/textview_H6_size</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="textViewH2">
+        <item name="android:textSize">@dimen/textview_H2_size</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ackBarStyle" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_out</item>
+    </style>
+</resources>
