@@ -3,7 +3,7 @@ AckBar is simple, lightweight and customizable Android library to display in-app
 
 * Show a message on top of the screen for a fixed period of time or make it sticky
 * Queue message
-* Add action to your message
+* Add action to your notifications
 * Add an additional message body
 * Customize the message color
 
@@ -53,7 +53,7 @@ allprojects {
 
 now add  the dependency on your project build.gradle file
 ```groovy
-compile 'com.murielkamgang:AckBar:1.0.0'
+compile 'com.murielkamgang:AckBar:1.0.1'
 ```
 # Screenshots
 ![GIF](gif/g_1.gif)
@@ -61,7 +61,7 @@ compile 'com.murielkamgang:AckBar:1.0.0'
 ![Logo](screenshots/s_3.png)
 ![Logo](screenshots/s_4.png)
 
-#Copyright
+# Copyright
 
 Licensed under the GNU General Public License v2.0
 

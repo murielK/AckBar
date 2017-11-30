@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 
-
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'AckBar'
@@ -10,7 +9,7 @@ ext {
     libraryDescription = 'AckBar is simple, lightweight and customizable Android library to display in-app notifications.'
     siteUrl = 'https://github.com/murielK/AckBar'
     gitUrl = 'https://github.com/murielK/AckBar.git'
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.1'
     developerId = 'murielk'
     developerName = 'Muriel kamgang Mabou'
     developerEmail = 'murielkamgang@gmail.com'
@@ -28,7 +27,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName libraryVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

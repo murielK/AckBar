@@ -27,10 +27,10 @@ import java.lang.reflect.Method;
 public class AckBar implements AckBarService.AckBarCallback {
 
     private static final String TAG = AckBar.class.getSimpleName();
-    private static final int DEFAULT_SNACK_TIME_OUT = 5000;
+    private static final int DEFAULT_ACK_BAR_TIME_OUT = 5000;
     private Activity context;
-    private View snackView;
-    private PopupWindow snackWindow;
+    private View view;
+    private PopupWindow popupWindow;
     private Callback callback;
     private Runnable action;
 
@@ -48,26 +48,26 @@ public class AckBar implements AckBarService.AckBarCallback {
     }
 
     public static AckBar make(Activity context, @StringRes int text, @ColorRes int color) {
-        return new AckBar(context, text, color, DEFAULT_SNACK_TIME_OUT);
+        return new AckBar(context, text, color, DEFAULT_ACK_BAR_TIME_OUT);
     }
 
     private void initView(@StringRes int textId, @ColorRes int color) {
-        snackView = LayoutInflater.from(context).inflate(R.layout.ackbar_view_layout, null);
-        ((TextView) snackView.findViewById(R.id.text_alertbar_title)).setText(textId);
-        snackView.findViewById(R.id.image_alertbar_close).setOnClickListener(new View.OnClickListener() {
+        view = LayoutInflater.from(context).inflate(R.layout.ackbar_view_layout, null);
+        ((TextView) view.findViewById(R.id.text_alertbar_title)).setText(textId);
+        view.findViewById(R.id.image_alertbar_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AckBarService.getInstance().dismiss(AckBar.this);
             }
         });
-        snackWindow = new PopupWindow(snackView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        snackWindow.setFocusable(false);
-        snackWindow.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(color)));
-        snackWindow.setOutsideTouchable(false);
+        popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setFocusable(false);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(color)));
+        popupWindow.setOutsideTouchable(false);
     }
 
     public void setMsg(@StringRes int textId) {
-        final TextView textView = snackView.findViewById(R.id.text_alertbar_description);
+        final TextView textView = view.findViewById(R.id.text_alertbar_description);
         if (textView.getVisibility() != View.VISIBLE) {
             textView.setVisibility(View.VISIBLE);
         }
@@ -76,7 +76,7 @@ public class AckBar implements AckBarService.AckBarCallback {
     }
 
     public void clearMsg() {
-        final TextView textView = snackView.findViewById(R.id.text_alertbar_description);
+        final TextView textView = view.findViewById(R.id.text_alertbar_description);
         if (textView.getVisibility() == View.VISIBLE) {
             textView.setVisibility(View.GONE);
         }
@@ -85,11 +85,11 @@ public class AckBar implements AckBarService.AckBarCallback {
     }
 
     public void setAction(Runnable r) {
-        final ImageView imageView = snackView.findViewById(R.id.image_arrow);
+        final ImageView imageView = view.findViewById(R.id.image_arrow);
         action = r;
         if (action != null) {
             imageView.setVisibility(View.VISIBLE);
-            snackView.setOnClickListener(new View.OnClickListener() {
+            view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     action.run();
@@ -97,7 +97,7 @@ public class AckBar implements AckBarService.AckBarCallback {
             });
         } else {
             imageView.setVisibility(View.GONE);
-            snackView.setOnClickListener(null);
+            view.setOnClickListener(null);
         }
     }
 
@@ -110,7 +110,7 @@ public class AckBar implements AckBarService.AckBarCallback {
     }
 
     private boolean isInit() {
-        return snackWindow != null;
+        return popupWindow != null;
     }
 
     public void dismiss() {
@@ -137,9 +137,9 @@ public class AckBar implements AckBarService.AckBarCallback {
             if (statusBarSizeResId > 0)
                 statusBarSize = context.getResources().getDimensionPixelSize(statusBarSizeResId);
 
-            snackWindow.setAnimationStyle(R.style.ackBarStyle);
+            popupWindow.setAnimationStyle(R.style.ackBarStyle);
             setWindowLayoutType();
-            snackWindow.showAtLocation(viewGroup, Gravity.NO_GRAVITY, 0, actionBarHeight + statusBarSize);
+            popupWindow.showAtLocation(viewGroup, Gravity.NO_GRAVITY, 0, actionBarHeight + statusBarSize);
 
             isShowing = true;
             if (callback != null) {
@@ -150,7 +150,7 @@ public class AckBar implements AckBarService.AckBarCallback {
 
     private void internalDismiss() {
         if (isInit() && isShowing) {
-            snackWindow.dismiss();
+            popupWindow.dismiss();
             isShowing = false;
             if (callback != null) {
                 callback.onDismissed();
@@ -160,11 +160,11 @@ public class AckBar implements AckBarService.AckBarCallback {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void setWindowLayoutType() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             try {
-                snackView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+                view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
                 Method setWindowLayoutType = PopupWindow.class.getMethod("setWindowLayoutType", new Class[]{int.class});
-                setWindowLayoutType.invoke(snackWindow, WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
+                setWindowLayoutType.invoke(popupWindow, WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
 
             } catch (Exception e) {
                 android.util.Log.e(TAG, "", e);

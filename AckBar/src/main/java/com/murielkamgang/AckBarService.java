@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * Created by muriel on 11/29/17.
  */
 
-public class AckBarService {// not to be used in multithreading environment
+class AckBarService {// not to be used in multithreading environment
 
     private static final int WHAT_DISMISS = 0;
     private static final int MIN_TIME_OUT = 2000;
@@ -36,7 +36,7 @@ public class AckBarService {// not to be used in multithreading environment
     private AckBarService() {
     }
 
-    public static AckBarService getInstance() {
+    static AckBarService getInstance() {
         if (instance == null) {
             synchronized (AckBarService.class) {
                 if (instance == null) {
