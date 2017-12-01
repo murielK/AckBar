@@ -149,7 +149,7 @@ public class AckBar implements AckBarService.AckBarCallback {
     }
 
     private void internalDismiss() {
-        if (isInit() && isShowing) {
+        if (isShowing) {
             popupWindow.dismiss();
             isShowing = false;
             if (callback != null) {

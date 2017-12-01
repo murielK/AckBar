@@ -30,6 +30,7 @@
             android:layout_marginStart="@dimen/text_margin_start"
             android:ellipsize="end"
             android:maxLines="1"
+            android:textColor="@android:color/white"
             tools:text="Notification title" />
 
         <TextView
@@ -40,6 +41,7 @@
             android:layout_marginLeft="@dimen/text_margin_start"
             android:layout_marginStart="@dimen/text_margin_start"
             android:paddingTop="@dimen/text_padding_top"
+            android:textColor="@android:color/white"
             android:visibility="gone"
             tools:text="Notification description" />
 
