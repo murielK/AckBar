@@ -39,14 +39,12 @@ set an action
 
 # Download
 
-add the repo on your root build.gradle file
+add jcenter repo on your root build.gradle file
 
 ```groovy
 allprojects {
     repositories {
-         maven {
-            url "https://dl.bintray.com/murielk/maven/"
-        }
+           jcenter()
     }
 }
 ```
