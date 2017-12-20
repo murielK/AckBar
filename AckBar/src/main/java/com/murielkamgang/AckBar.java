@@ -62,6 +62,10 @@ public class AckBar implements AckBarService.AckBarCallback {
         return new AckBar(context, title, backgroundColor, DEFAULT_ACK_BAR_TIME_OUT);
     }
 
+    public static AckBar make(Activity context, String title, int backgroundColor, int duration) {
+        return new AckBar(context, title, backgroundColor, duration);
+    }
+
     private void init(String title, int color) {
         view = LayoutInflater.from(activity).inflate(R.layout.ackbar_view_layout, null);
         view.findViewById(R.id.image_alertbar_close).setOnClickListener(new View.OnClickListener() {
