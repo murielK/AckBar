@@ -9,7 +9,7 @@ ext {
     libraryDescription = 'AckBar is simple, lightweight and customizable Android library to display in-app notifications.'
     siteUrl = 'https://github.com/murielK/AckBar'
     gitUrl = 'https://github.com/murielK/AckBar.git'
-    libraryVersion = '1.0.3'
+    libraryVersion = '1.0.4'
     developerId = 'murielk'
     developerName = 'Muriel kamgang Mabou'
     developerEmail = 'murielkamgang@gmail.com'

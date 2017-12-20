@@ -2,6 +2,7 @@ package com.murielkamgang;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.ColorRes;
@@ -28,7 +29,7 @@ public class AckBar implements AckBarService.AckBarCallback {
 
     private static final String TAG = AckBar.class.getSimpleName();
     private static final int DEFAULT_ACK_BAR_TIME_OUT = 5000;
-    private Activity context;
+    private Activity activity;
     private View view;
     private PopupWindow popupWindow;
     private Callback callback;
@@ -37,42 +38,62 @@ public class AckBar implements AckBarService.AckBarCallback {
     private boolean isShowing;
     private int duration;
 
-    private AckBar(Activity context, @StringRes int text, @ColorRes int color, int duration) {
-        this.context = context;
+    private AckBar(Activity context, @StringRes int titleResId, @ColorRes int backgroundColorResId, int duration) {
+        this.activity = context;
         this.duration = duration;
-        initView(text, color);
+        init(titleResId, backgroundColorResId);
     }
 
-    public static AckBar make(Activity context, @StringRes int text, @ColorRes int color, int duration) {
-        return new AckBar(context, text, color, duration);
+    private AckBar(Activity context, String title, int backgroundColor, int duration) {
+        this.activity = context;
+        this.duration = duration;
+        init(title, backgroundColor);
     }
 
-    public static AckBar make(Activity context, @StringRes int text, @ColorRes int color) {
-        return new AckBar(context, text, color, DEFAULT_ACK_BAR_TIME_OUT);
+    public static AckBar make(Activity context, @StringRes int titleResId, @ColorRes int backgroundColorResId, int duration) {
+        return new AckBar(context, titleResId, backgroundColorResId, duration);
     }
 
-    private void initView(@StringRes int textId, @ColorRes int color) {
-        view = LayoutInflater.from(context).inflate(R.layout.ackbar_view_layout, null);
-        ((TextView) view.findViewById(R.id.text_alertbar_title)).setText(textId);
+    public static AckBar make(Activity context, @StringRes int titleResId, @ColorRes int backgroundColorResId) {
+        return new AckBar(context, titleResId, backgroundColorResId, DEFAULT_ACK_BAR_TIME_OUT);
+    }
+
+    public static AckBar make(Activity context, String title, int backgroundColor) {
+        return new AckBar(context, title, backgroundColor, DEFAULT_ACK_BAR_TIME_OUT);
+    }
+
+    private void init(String title, int color) {
+        view = LayoutInflater.from(activity).inflate(R.layout.ackbar_view_layout, null);
         view.findViewById(R.id.image_alertbar_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AckBarService.getInstance().dismiss(AckBar.this);
             }
         });
+
+        ((TextView) view.findViewById(R.id.text_alertbar_title)).setText(title);
         popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setFocusable(false);
-        popupWindow.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(color)));
+        popupWindow.setBackgroundDrawable(new ColorDrawable(color));
         popupWindow.setOutsideTouchable(false);
     }
 
-    public void setMsg(@StringRes int textId) {
+    private void init(@StringRes int titleResId, @ColorRes int backgroundColorResId) {
+        final Resources res = activity.getResources();
+        init(res.getString(titleResId), res.getColor(backgroundColorResId));
+    }
+
+    public void setMsg(@StringRes int msgResId) {
+        setMsg(activity.getResources().getString(msgResId));
+    }
+
+    public void setMsg(String msg) {
         final TextView textView = view.findViewById(R.id.text_alertbar_description);
         if (textView.getVisibility() != View.VISIBLE) {
             textView.setVisibility(View.VISIBLE);
         }
 
-        textView.setText(textId);
+        textView.setText(msg);
     }
 
     public void clearMsg() {
@@ -131,19 +152,19 @@ public class AckBar implements AckBarService.AckBarCallback {
 
     private void internalShow() {
         if (!isShowing) {
-            final ViewGroup viewGroup = context
+            final ViewGroup viewGroup = activity
                     .findViewById(android.R.id.content);
 
             final TypedValue tv = new TypedValue();
             int actionBarHeight = 0;
-            if (context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-                actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, context.getResources().getDisplayMetrics());
+            if (activity.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+                actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, activity.getResources().getDisplayMetrics());
             }
 
             int statusBarSize = 0;
-            int statusBarSizeResId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+            int statusBarSizeResId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
             if (statusBarSizeResId > 0)
-                statusBarSize = context.getResources().getDimensionPixelSize(statusBarSizeResId);
+                statusBarSize = activity.getResources().getDimensionPixelSize(statusBarSizeResId);
 
             popupWindow.setAnimationStyle(R.style.ackBarStyle);
             setWindowLayoutType();

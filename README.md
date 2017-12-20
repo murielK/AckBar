@@ -51,7 +51,7 @@ allprojects {
 
 now add  the dependency on your project build.gradle file
 ```groovy
-compile 'com.murielkamgang:AckBar:1.0.3'
+compile 'com.murielkamgang:AckBar:1.0.4'
 ```
 # Screenshots
 ![GIF](gif/g_1.gif)
