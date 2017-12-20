@@ -1,11 +1,11 @@
 # AckBar
 AckBar is simple, lightweight and customizable Android library to display in-app notifications.
 
-* Show a message on top of the screen for a fixed period of time or make it sticky
-* Queue message
-* Add action to your notifications
-* Add an additional message body
-* Customize the message color
+* Show a notification on top of the screen for a fixed period of time or make it sticky
+* Queue notification
+* Add action to your notification
+* Add an additional message body to your notification
+* Customize the notification color
 
 # How to
 create your AckBar object:
