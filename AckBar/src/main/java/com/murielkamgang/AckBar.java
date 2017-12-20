@@ -101,6 +101,14 @@ public class AckBar implements AckBarService.AckBarCallback {
         }
     }
 
+    public Object getTag() {
+        return view.getTag();
+    }
+
+    public void setTag(Object object) {
+        view.setTag(object);
+    }
+
     public int getDuration() {
         return duration;
     }
@@ -143,7 +151,7 @@ public class AckBar implements AckBarService.AckBarCallback {
 
             isShowing = true;
             if (callback != null) {
-                callback.onShowed();
+                callback.onShowed(this);
             }
         }
     }
@@ -153,7 +161,7 @@ public class AckBar implements AckBarService.AckBarCallback {
             popupWindow.dismiss();
             isShowing = false;
             if (callback != null) {
-                callback.onDismissed();
+                callback.onDismissed(this);
             }
         }
     }
@@ -192,9 +200,9 @@ public class AckBar implements AckBarService.AckBarCallback {
 
     public interface Callback {
 
-        void onShowed();
+        void onShowed(AckBar ackBar);
 
-        void onDismissed();
+        void onDismissed(AckBar ackBar);
     }
 
 }
